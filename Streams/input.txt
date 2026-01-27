@@ -1,0 +1,26 @@
+Cuneiform is one of the oldest surviving forms of writing. It was used in Mesopotamia to compose a tremendous number of texts on clay tablets, thousands of which survive to the present day. Cuneiform had no paragraphs or even spacing between words with the symbols all written directly adjacent to one another.[1] Egyptian hieroglyphics were also unspaced,[2] but as they wrote on papyrus with ink, Egyptians scribes introduced the practice of rubrication: the scribes used black ink for the main body text and contrasting red ink for headings.[3]
+
+Greek scribes developed other approaches to organizing text, although the earliest Greek and Latin documents were written in solid blocks of capital letters with little to no spacing, paragraph breaks, or punctuation. Some of the oldest Greek inscriptions were written boustrophedon (literally 'as the ox turns') where the direction of the text's flow and the direction the letters face would switch at the end of each line, as an ox plowing a field would reverse directions. Over time, text direction (left to right) became standardized. Word dividers and punctuation were developed in Hellenistic Alexandria, but were only gradually adopted over centuries. Literature scholars believe that early manuscripts lacking in punctuation and spacing were meant to be read aloud.[4]
+
+The paragraphos was introduced by scribes in the 4th century AD as a line placed beside a block of text. These marginal symbols evolved into a pair of abbreviations. A stylized K, for kaput/caput or 'head', was placed at the beginning of new sections; a C, for capitulum or 'little head', which evolved into the pilcrow (¶), was placed at the beginning of subsections that modern readers would recognize as paragraphs. In many English manuscripts in the Middle Ages, pilcrows were also placed inline between sentences. Spaces were left at the beginning of paragraphs in early print documents for rubricators to hand-draw the pilcrows. These spaces were eventually left un-rubricated, leading to the modern tradition of indenting a paragraph. Using spacing alone to separate paragraphs eventually became standard.[4][5]
+
+
+Indented paragraphs demonstrated in the US Constitution
+Ancient manuscripts also divided sentences into paragraphs with line breaks (newline) followed by an initial at the beginning of the next paragraph. An initial is an oversized capital letter, sometimes outdented beyond the margin of the text. This style can be seen, for example, in the original Old English manuscript of Beowulf. Outdenting is still used in English typography, though not commonly.[6] Modern English typography usually indicates a new paragraph by indenting the first line. This style can be seen in the (handwritten) United States Constitution from 1787. For additional ornamentation, a hedera leaf or other symbol can be added to the inter-paragraph white space, or put in the indentation space.
+
+A second common modern English style is to use no indenting, but add vertical white space to create "block paragraphs." On a typewriter, a double carriage return produces a blank line for this purpose; professional typesetters (or word processing software) may put in an arbitrary vertical space by adjusting leading. This style is very common in electronic formats, such as on the World Wide Web and email. Wikipedia itself employs this format.
+
+Typographical considerations
+Professionally printed material in English typically does not indent the first paragraph, but indents those that follow. For example, Robert Bringhurst states that we should "Set opening paragraphs flush left."[6] Bringhurst explains as follows:
+
+The function of a paragraph is to mark a pause, setting the paragraph apart from what precedes it. If a paragraph is preceded by a title or subhead, the indent is superfluous and can therefore be omitted.[6]
+
+The Elements of Typographic Style states that "at least one en [space]" should be used to indent paragraphs after the first,[6] noting that that is the "practical minimum".[7] An em space is the most commonly used paragraph indent.[7] Miles Tinker, in his book Legibility of Print, concluded that indenting the first line of paragraphs increases readability by 7%, on average.[8]
+
+When referencing a paragraph, typographic symbol U+00A7 § SECTION SIGN (&sect;) may be used: "See § Background".
+
+In modern usage, paragraph initiation is typically indicated by one or more of a preceding blank line, indentation, an "Initial" ("drop cap") or other indication. Historically, the pilcrow symbol (¶) was used in Latin and western European languages. Other languages have their own marks with similar function.
+
+Widows and orphans occur when the first line of a paragraph is the last in a column or page, or when the last line of a paragraph is the first line of a new column or page.
+
+In computing
