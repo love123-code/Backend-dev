@@ -1,17 +1,103 @@
+const fs = require("fs").promises;
 const express = require("express");
-
 const app = express();
-const PORT = 8000;
 
-app.get("/users", (req, res) => {
-    res.send("<h1>Welcome to home page</h1>");
-});
+app.use(express.json());
 
-app.get("/users/:id", (req, res) => {
-    const userId = req.params.id;
-    res.send(`You are requesting for user: ${userId}`);
-});
+const loggerMiddleware = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+};
+app.use(loggerMiddleware);
 
+const validateIdMiddleware = (req, res, next) => {
+  if (req.params.id && isNaN(Number(req.params.id))) {
+    return res.status(400).json({ message: "Invalid student ID" });
+  }
+  next();
+};
+app.use("/students/:id", validateIdMiddleware);
+
+const PORT= 8000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
+  console.log("Server is listening on port:8000");
 });
+
+const readStudentsFromFile = async () => {
+  const data = await fs.readFile("./students.json", "utf-8");
+  return JSON.parse(data || "[]");
+};
+
+const writeStudentsToFile = async (records) => {
+  await fs.writeFile("./students.json", JSON.stringify(records, null, 2));
+};
+
+app.get("/students", async(req, res) => {
+    const students= await readStudentsFromFile();
+    return res.status(200).json(students);
+})
+
+app.put("/students/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).json({ message: "Empty body not allowed" });
+    }
+
+    const existingStudents = await readStudentsFromFile();
+
+    const foundIndex = existingStudents.findIndex((s) => s.id === userId);
+    if (foundIndex === -1) {
+      return res.status(404).send("Student not found");
+    }
+
+    existingStudents[foundIndex] = {
+      ...existingStudents[foundIndex],
+      ...req.body,
+    };
+
+    await writeStudentsToFile(existingStudents);
+
+    return res.status(200).json({
+      message: "Updated Successfully",
+      student: existingStudents[foundIndex],
+    });
+  } catch (err) {
+    return res.status(500).json({ message: "Internal Server Error", error: err.message });
+  }
+});
+
+app.delete("/students/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+
+    const existingStudents = await readStudentsFromFile();
+
+    const foundIndex = existingStudents.findIndex((s) => s.id === userId);
+    if (foundIndex === -1) {
+      return res.status(404).send("Student not found");
+    }
+
+    const deletedStudent = existingStudents.splice(foundIndex, 1);
+
+    await writeStudentsToFile(existingStudents);
+
+    return res.status(200).json({
+      message: "Student deleted successfully",
+      deletedStudent: deletedStudent[0],
+    });
+  } catch (err) {
+    return res.status(500).json({ message: "Internal Server Error", error: err.message });
+  }
+});
+
+const errorMiddleware = (err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Something went wrong" });
+};
+
+app.use(errorMiddleware);
+
+
+
