@@ -1,0 +1,77 @@
+
+
+1. Advantages of using Mongoose over the native MongoDB driver
+
+
+Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js that provides a higher-level abstraction compared to the native MongoDB driver. One of its major advantages is that it allows developers to define schemas for their data. This ensures a structured format for documents, whereas the native MongoDB driver is schema-less and does not enforce any structure.
+
+Another important advantage is built-in validation. Mongoose allows developers to define validation rules such as required fields, minimum or maximum values, and data types directly in the schema. This reduces the need for manual validation in application code.
+
+Mongoose also supports middleware (hooks), which allows execution of functions before or after certain operations like saving or updating documents. This is useful for tasks such as password hashing, logging, or validation.
+
+Additionally, Mongoose provides an easy way to handle relationships between data using the populate() method. This simplifies working with referenced documents, whereas in the native driver, developers need to manually write aggregation queries.
+
+Mongoose also offers cleaner and more readable syntax, along with support for custom methods, virtual properties, and static functions, making code more organized and maintainable.
+
+
+
+
+
+
+2. Difference between findOneAndUpdate() and updateOne()
+
+The findOneAndUpdate() and updateOne() methods in Mongoose are both used to update documents, but they differ in functionality and use cases.
+
+The findOneAndUpdate() method finds a document based on a condition and updates it in a single operation. It can also return the updated document if the option { new: true } is used. This makes it useful when the updated data is needed immediately after the update operation.
+
+On the other hand, updateOne() simply updates the first document that matches the condition but does not return the updated document. Instead, it returns an object containing information about the operation, such as whether it was successful and how many documents were modified.
+
+Another difference is in middleware behavior. findOneAndUpdate() triggers query middleware, while updateOne() triggers update middleware.
+
+In summary, findOneAndUpdate() is preferred when you need the updated document, while updateOne() is more efficient when you only need to perform the update without retrieving the result.
+
+
+
+
+
+3. Purpose of Middleware in Mongoose
+
+Middleware in Mongoose refers to functions that are executed automatically before or after certain database operations such as save, update, delete, or validate. These are also known as hooks.
+
+The main purpose of middleware is to allow developers to add custom logic around database operations without repeating code throughout the application. Middleware helps in separating concerns and maintaining cleaner code.
+
+There are two main types of middleware: pre middleware and post middleware. Pre middleware runs before an operation is executed, while post middleware runs after the operation is completed.
+
+Middleware is commonly used for tasks such as hashing passwords before saving them to the database, validating data, logging database operations, or modifying data before storing it.
+
+Overall, middleware improves code reusability, maintainability, and ensures that certain operations are consistently applied across the application.
+
+
+
+
+
+4. How to implement pagination in Mongoose
+
+Pagination in Mongoose is used to divide large datasets into smaller chunks, making it easier to manage and display data. It is commonly implemented using the skip() and limit() methods.
+
+The skip() method is used to skip a certain number of documents, while the limit() method restricts the number of documents returned in a query. By combining these two methods, developers can fetch data page by page.
+
+For example, if each page contains 10 records, then for page 2, the query would skip the first 10 records and return the next 10 records.
+
+Pagination can also be enhanced by including the total number of documents using countDocuments(). This allows calculation of total pages and provides better information to the user.
+
+For very large datasets, skip() can become inefficient. In such cases, cursor-based pagination is preferred, where data is fetched based on a reference value such as an ID, making it faster and more scalable.
+
+
+
+
+
+5. When to use embedding vs referencing in MongoDB schema design
+
+In MongoDB schema design, embedding and referencing are two different approaches to structuring data.
+
+Embedding involves storing related data within the same document. This approach is useful when the related data is small in size and is frequently accessed together. Embedding improves read performance because all the required data is available in a single query. However, it can lead to data duplication and is limited by MongoDB’s document size limit of 16MB.
+
+Referencing, on the other hand, involves storing related data in separate collections and linking them using ObjectIds. This approach is useful when the data is large, frequently updated, or shared across multiple documents. Referencing avoids duplication and makes the database more scalable, but it may require additional queries or the use of populate() to retrieve related data.
+
+In general, embedding should be used for one-to-few relationships and when data is tightly coupled, while referencing should be used for one-to-many or many-to-many relationships and when scalability is important.
